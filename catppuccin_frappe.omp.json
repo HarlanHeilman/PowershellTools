@@ -1,0 +1,93 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "os": "#ACB0BE",
+    "closer": "p:os",
+    "pink": "#F4B8E4",
+    "lavender": "#BABBF1",
+    "blue": "#8CAAEE"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "p:blue",
+          "style": "plain",
+          "template": "@{{ .HostName }} ",
+          "type": "session"
+        },
+        {
+          "foreground": "p:pink",
+          "properties": {
+            "folder_icon": "..\ue5fe..",
+            "home_icon": "~",
+            "style": "agnoster_short"
+          },
+          "style": "plain",
+          "template": "{{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "p:lavender",
+          "properties": {
+            "branch_icon": "\ue725 ",
+            "cherry_pick_icon": "\ue29b ",
+            "commit_icon": "\uf417 ",
+            "fetch_status": false,
+            "fetch_upstream_icon": false,
+            "merge_icon": "\ue727 ",
+            "no_commits_icon": "\uf0c3 ",
+            "rebase_icon": "\ue728 ",
+            "revert_icon": "\uf0e2 ",
+            "tag_icon": "\uf412 "
+          },
+          "template": "{{ .HEAD }} ",
+          "style": "plain",
+          "type": "git"
+        },
+        {
+          "style": "plain",
+          "foreground": "p:closer",
+          "template": "\uf105",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "tooltips": [
+    {
+      "type": "python",
+      "tips": [
+        "",
+        "py",
+        "python",
+        "conda",
+        "venv",
+        "virtualenv",
+        "pipenv",
+        "pip",
+        "mamba",
+        "poetry"
+      ],
+      "style": "plain",
+      "foreground": "p:pink",
+      "template": "(\uE235 {{.Major}}.{{.Minor}} {{ if .Venv }}{{ .Venv }}{{ end }}) ",
+      "properties": {
+        "fetch_virtual_env": true,
+        "display_mode": "always",
+        "home_enabled": true
+      }
+    }
+  ],
+  "final_space": true,
+  "version": 2,
+  "console_title_template": "{{ .Folder }}",
+  "transient_prompt": {
+    "enabled": false,
+    "style": "plain",
+    "foreground": "p:pink",
+    "template": "@{{.HostName}}>"
+  }
+}
