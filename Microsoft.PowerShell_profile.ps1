@@ -10,7 +10,8 @@ function global:__zoxide_bin {
         [Console]::OutputEncoding = [System.Text.Utf8Encoding]::new()
         $result = zoxide @args
         return $result
-    } finally {
+    }
+    finally {
         [Console]::OutputEncoding = $encoding
     }
 }
@@ -27,7 +28,8 @@ function global:__zoxide_pwd {
 function global:__zoxide_cd($dir, $literal) {
     $dir = if ($literal) {
         Set-Location -LiteralPath $dir -Passthru -ErrorAction Stop
-    } else {
+    }
+    else {
         if ($dir -eq '-' -and ($PSVersionTable.PSVersion -lt 6.1)) {
             Write-Error "cd - is not supported below PowerShell 6.1. Please upgrade your version of PowerShell."
         }
@@ -122,6 +124,13 @@ Set-Alias -Name cdi -Value __zoxide_zi -Option AllScope -Scope Global -Force
 # To initialize zoxide, add this to your configuration (find it by running
 # `echo $profile` in PowerShell):
 #
+$env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 oh-my-posh init pwsh --config "$env:HOME\PowershellTools\catppuccin_frappe.omp.json" | Invoke-Expression
 
+#region conda initialize
+# !! Contents within this block are managed by 'conda init' !!
+If (Test-Path "C:\tools\mambaforge\Scripts\conda.exe") {
+    (& "C:\tools\mambaforge\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
+}
+#endregion

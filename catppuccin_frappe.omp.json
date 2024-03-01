@@ -12,6 +12,17 @@
       "alignment": "left",
       "segments": [
         {
+          "type": "python",
+          "style": "plain",
+          "foreground": "p:pink",
+          "template": "(\uE235 {{.Major}}.{{.Minor}} {{ if .Venv }}{{ .Venv }}{{ end }}) ",
+          "properties": {
+            "fetch_virtual_env": true,
+            "display_mode": "always",
+            "home_enabled": true
+          }
+        },
+        {
           "foreground": "p:blue",
           "style": "plain",
           "template": "@{{ .HostName }} ",
@@ -54,31 +65,6 @@
         }
       ],
       "type": "prompt"
-    }
-  ],
-  "tooltips": [
-    {
-      "type": "python",
-      "tips": [
-        "",
-        "py",
-        "python",
-        "conda",
-        "venv",
-        "virtualenv",
-        "pipenv",
-        "pip",
-        "mamba",
-        "poetry"
-      ],
-      "style": "plain",
-      "foreground": "p:pink",
-      "template": "(\uE235 {{.Major}}.{{.Minor}} {{ if .Venv }}{{ .Venv }}{{ end }}) ",
-      "properties": {
-        "fetch_virtual_env": true,
-        "display_mode": "always",
-        "home_enabled": true
-      }
     }
   ],
   "final_space": true,
