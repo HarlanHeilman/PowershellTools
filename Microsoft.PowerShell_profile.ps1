@@ -134,3 +134,20 @@ If (Test-Path "C:\tools\mambaforge\Scripts\conda.exe") {
     (& "C:\tools\mambaforge\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
 }
 #endregion
+
+# =============================================================================
+#
+# Sharepoint env variables
+#
+
+#region SharePoint Environment Variables
+
+
+$sp = Convert-Path ("C:\Users\hduva\Washington State University (email.wsu.edu)\Carbon Lab Research Group - Documents")
+$sp = $sp | Add-Member -NotePropertyName root -NotePropertyValue (Convert-Path $sp) -PassThru
+$sp = $sp | Add-Member -NotePropertyName user -NotePropertyValue (Convert-Path ($sp + "\\Harlan Heilman")) -PassThru
+$sp = $sp | Add-Member -NotePropertyName db -NotePropertyValue (Convert-Path ($sp.User + "\\.refl\\.db")) -PassThru
+$sp = $sp | Add-Member -NotePropertyName raw -NotePropertyValue (Convert-Path ($sp + "\\Synchrotron Logistics and Data")) -PassThru
+
+
+#endregion
