@@ -131,11 +131,20 @@ $env:VIRTUAL_ENV_DISABLE_PROMPT = 1
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 oh-my-posh init pwsh --config "$env:HOME\PowershellTools\catppuccin_frappe.omp.json" | Invoke-Expression
 
-#region conda initialize
 # !! Contents within this block are managed by 'conda init' !!
-If (Test-Path "C:\tools\mambaforge\Scripts\conda.exe") {
-    (& "C:\tools\mambaforge\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ? { $_ } | Invoke-Expression
+If (Test-Path "C:\Users\hduva\anaconda3\Scripts\conda.exe") {
+    (& "C:\Users\hduva\anaconda3\Scripts\conda.exe" "shell.powershell" "hook") | Out-String | ?{$_} | Invoke-Expression
 }
+#endregion
+
+
+#region mamba initialize
+# !! Contents within this block are managed by 'mamba shell init' !!
+$Env:MAMBA_ROOT_PREFIX = "C:\Users\hduva\micromamba"
+$Env:MAMBA_EXE = "C:\Users\hduva\AppData\Local\micromamba\micromamba.exe"
+(& $Env:MAMBA_EXE 'shell' 'hook' -s 'powershell' -p $Env:MAMBA_ROOT_PREFIX) | Out-String | Invoke-Expression
+#endregion
+Set-Alias -Name micromamba -Value conda
 #endregion
 
 # =============================================================================
